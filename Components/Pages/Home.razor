@@ -1,0 +1,49 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using Bogcha.Models
+@inject Bogcha.Data.BogchaDbContext DbContext
+@using Microsoft.EntityFrameworkCore
+
+
+<PageTitle>Home</PageTitle>
+
+<h1>Bog‘cha Clients</h1>
+
+<input type="text" @bind="newClient.FirstName" placeholder="First name">
+<input type="text" @bind="newClient.LastName" placeholder="Last name">
+<input type="text" @bind="newClient.MiddleName" placeholder="Middle name">
+<input type="number" @bind="newClient.BogchaId" placeholder="Bogcha ID">
+<input type="number" @bind="newClient.GroupId" placeholder="Group ID">
+
+<button @onclick="SaveClient">Save</button>
+
+<hr>
+
+@foreach(var client in Clients){
+    <h3>@client.FirstName @client.MiddleName @client.LastName</h3>
+    <button @onclick="()=> deleteUser(client.Id)">Delete</button>
+}
+
+@code{
+    List<Client> Clients = new List<Client>();
+    Client newClient = new Client();
+
+
+    protected override async Task OnInitializedAsync(){
+        Clients = await DbContext.Clients.ToListAsync();
+    }
+
+    public async Task SaveClient(){
+        DbContext.Clients.Add(newClient);
+        await DbContext.SaveChangesAsync();
+        newClient = new Client();
+        Clients = await DbContext.Clients.ToListAsync();
+    }
+
+    public async Task deleteUser(int id){
+        var deletable = await DbContext.Clients.FindAsync(id);
+        DbContext.Clients.Remove(deletable);
+        await DbContext.SaveChangesAsync();
+        Clients = await DbContext.Clients.ToListAsync();
+    }
+}
