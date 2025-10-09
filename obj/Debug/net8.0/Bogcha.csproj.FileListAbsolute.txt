@@ -17,7 +17,6 @@ C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\rjimswa.dswa.cache.jso
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
-C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\bundle\Bogcha.styles.css
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\projectbundle\Bogcha.bundle.scp.css
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\staticwebassets.build.json
@@ -157,3 +156,8 @@ C:\Users\user\source\repos\Bogcha\Bogcha\bin\Debug\net8.0\runtimes\win-x86\nativ
 C:\Users\user\source\repos\Bogcha\Bogcha\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\Bogcha.csproj.AssemblyReference.cache
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\Bogcha.csproj.Up2Date
+C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\Bogcha.sourcelink.json
+C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\Components\Pages\UserPages\Home.razor.rz.scp.css
+C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\Components\Pages\UserPages\AddClient.razor.rz.scp.css
+C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\Components\Layout\Navbar.razor.rz.scp.css
+C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\Components\Pages\UserPages\AddGroup.razor.rz.scp.css

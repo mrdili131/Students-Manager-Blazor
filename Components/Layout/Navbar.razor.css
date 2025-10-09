@@ -1,0 +1,111 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Nunito", sans-serif;
+    }
+
+    .body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      background-color: #f3f4f6;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: #111827;
+      color: white;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      z-index: 10;
+    }
+
+    nav h1 {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    nav li {
+      list-style: none;
+      font-size: 18px;
+      color: #d1d5db;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav li:hover {
+      color: white;
+    }
+
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f9fafb;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .controls input, .controls select {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      background-color: #ffffff;
+    }
+
+    .controls button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 600;
+    }
+
+    .controls button:hover {
+      background-color: #2563eb;
+    }
+
+ 
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .body {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+      }
+
+      nav {
+        position: fixed;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px;
+      }
+
+      nav h1 {
+        display: none;
+      }
+
+    }

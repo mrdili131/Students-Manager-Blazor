@@ -32,20 +32,12 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/Admin.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcQWRtaW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/user/source/repos/Bogcha/Bogcha/Components/Routes.razor]
@@ -60,6 +52,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-2f28i4mp16
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Layout/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-tlxura7gq3
+[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Layout/Navbar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2YmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-kqxcq393q5
+
+[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/AddClient.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcQWRkQ2xpZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-y3rfsuwpan
+
+[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/AddGroup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcQWRkR3JvdXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-hq94l768gs
+
+[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-an2dspduul

@@ -1,0 +1,191 @@
+*[b-hq94l768gs] {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Nunito", sans-serif;
+    }
+
+    body[b-hq94l768gs] {
+      display: flex;
+      flex-direction: row;
+      background-color: #f3f4f6;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    nav[b-hq94l768gs] {
+      background-color: #111827;
+      color: white;
+      padding: 30px 20px;
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav h1[b-hq94l768gs] {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    nav li[b-hq94l768gs] {
+      list-style: none;
+      font-size: 18px;
+      color: #d1d5db;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav li:hover[b-hq94l768gs] {
+      color: white;
+    }
+
+    /* Main container */
+    .main-container[b-hq94l768gs] {
+      flex: 1;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      gap: 25px;
+    }
+
+    .top-bar[b-hq94l768gs] {
+      width: 100%;
+      padding: 20px;
+      background-color: #f9fafb;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar h1[b-hq94l768gs] {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .form-container[b-hq94l768gs] {
+      width: 100%;
+      max-width: 700px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .form-group[b-hq94l768gs] {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label[b-hq94l768gs] {
+      font-size: 16px;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    input[b-hq94l768gs],
+    select[b-hq94l768gs] {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      background-color: #f9fafb;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    input:focus[b-hq94l768gs],
+    select:focus[b-hq94l768gs] {
+      border-color: #3b82f6;
+      background-color: #ffffff;
+      outline: none;
+    }
+
+    /* Clients selector */
+    .clients-list[b-hq94l768gs] {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 15px;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .client-item[b-hq94l768gs] {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .client-item:hover[b-hq94l768gs] {
+      background-color: #e5e7eb;
+    }
+
+    .client-item input[b-hq94l768gs] {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    .submit-btn[b-hq94l768gs] {
+      background-color: #3b82f6;
+      color: white;
+      font-size: 18px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+      align-self: flex-end;
+    }
+
+    .submit-btn:hover[b-hq94l768gs] {
+      background-color: #2563eb;
+    }
+
+    .submit-btn:active[b-hq94l768gs] {
+      transform: scale(0.97);
+    }
+
+    @media (max-width: 768px) {
+      body[b-hq94l768gs] {
+        flex-direction: column;
+      }
+
+      nav[b-hq94l768gs] {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px;
+      }
+
+      nav h1[b-hq94l768gs] {
+        display: none;
+      }
+
+      .main-container[b-hq94l768gs] {
+        width: 100%;
+        padding: 15px;
+      }
+
+      .form-container[b-hq94l768gs] {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .submit-btn[b-hq94l768gs] {
+        width: 100%;
+      }
+    }

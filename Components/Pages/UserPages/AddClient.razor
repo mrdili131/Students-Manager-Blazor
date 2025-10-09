@@ -1,0 +1,94 @@
+@page "/User/AddClient"
+@rendermode InteractiveServer
+@using Bogcha.Data
+@using Bogcha.Models
+@inject Bogcha.Data.BogchaDbContext DbContext
+@using Microsoft.EntityFrameworkCore
+
+
+<div class="main-container">
+    <div class="top-bar">
+      <h1>Yangi o‘quvchi qo‘shish</h1>
+    </div>
+
+
+    <form class="form-container">
+      <div class="form-group">
+        <label for="fio">Familiya</label>
+        <input type="text" id="fio" @bind="newClient.LastName" placeholder="Masalan: Abduqodirov" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="fio">Ism</label>
+        <input type="text" id="fio" @bind="newClient.FirstName" placeholder="Masalan: Dilmuhammad" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="fio">Otasining ismi</label>
+        <input type="text" id="fio" @bind="newClient.MiddleName" placeholder="Masalan: Sodirjon o‘g‘li" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Yoshi</label>
+        <input type="number" id="age"  @bind="newClient.Age" min="2" max="7" placeholder="Masalan: 5" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="group">Gruppasi</label>
+        <select id="group" @bind="newClient.GroupId" required>
+          <option value="">Tanlang...</option>
+          @foreach(var group in Groups){
+            <option value="@group.Id">@group.Name</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="parent">Ota-onasi (foydalanuvchi) tanlang</label>
+        <select id="parent" @bind="newClient.ParentId" required>
+          <option value="">Tanlang...</option>
+          @foreach(var user in Users){
+            <option value="@user.Id">@user.LastName @user.FirstName</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Telefon raqami</label>
+        <input type="tel" id="phone" @bind="newClient.ContactInfo" placeholder="+998 90 123 45 67" required/>
+      </div>
+
+      <button class="submit-btn" type="submit" @onclick="CreateClient">Saqlash</button>
+
+    </form>
+</div>
+
+
+@code{
+    List<Group> Groups = new List<Group>();
+    List<User> Users = new List<User>();
+
+    Client newClient = new Client();
+
+
+    protected override async Task OnInitializedAsync(){
+        Groups = await DbContext.Groups.ToListAsync();
+        Users = await DbContext.Users.ToListAsync();
+    }
+
+    private async Task CreateClient(){
+        if (!string.IsNullOrWhiteSpace(newClient.FirstName) 
+            && !string.IsNullOrWhiteSpace(newClient.LastName) 
+            && !string.IsNullOrWhiteSpace(newClient.MiddleName)
+            && newClient.Age > 1 
+            && newClient.Age < 9
+            && newClient.GroupId != null 
+            && newClient.ParentId != null
+        )
+        {
+            DbContext.Clients.Add(newClient);
+            newClient = new Client();
+            await DbContext.SaveChangesAsync();
+        }
+    }
+}

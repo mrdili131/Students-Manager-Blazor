@@ -1,0 +1,123 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using Bogcha.Data
+@using Bogcha.Models
+@inject Bogcha.Data.BogchaDbContext DbContext
+@using Microsoft.EntityFrameworkCore
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="body">
+
+  <div class="main-container">
+    <div class="top-bar">
+      <h1>Assalomu alaykum, <strong>D.S. Abduqodirov</strong> 👋</h1>
+    </div>
+
+    <div class="stats">
+      <div class="card"><h2>@Clients.Count</h2><span>Jami o‘quvchilar</span></div>
+      <div class="card"><h2>28</h2><span>Bugun kelganlar</span></div>
+      <div class="card"><h2>4</h2><span>Guruhlar soni</span></div>
+      <div class="card"><h2>87%</h2><span>Davomat foizi</span></div>
+    </div>
+
+    <div class="charts">
+      <div class="chart-section">
+        <h2>Bolalar yoshi bo‘yicha</h2>
+        <canvas id="ageChart"></canvas>
+      </div>
+      <div class="chart-section">
+        <h2>Guruhlar bo‘yicha bolalar soni</h2>
+        <canvas id="groupChart"></canvas>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input type="text" placeholder="Ism yoki familiya bilan qidirish...">
+      <select @bind="SearchGroupId">
+      <option value="">Hammasi</option>
+      @foreach(var group in Groups){
+        <option value="@group.Id">@group.Name</option>
+      }
+      </select>
+      <button @onclick="FilterSearch">Filtrlash</button>
+      <button style="background:#10b981;">Yangi o‘quvchi +</button>
+    </div>
+
+    <div class="table-section">
+      <h2>Bugungi davomat</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>F.I.O</th><th>Yoshi</th><th>Guruh</th><th>Status</th><th>Ota-ona</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach(var client in Clients){
+          <tr><td>@client.LastName @client.FirstName</td><td>@client.Age</td><td>@client.Group.Name</td><td style="color:green;">Keldi</td><td>@client.ContactInfo</td></tr>
+        }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="announcement">
+      <h2>So‘nggi e’lonlar</h2>
+      <ul>
+        <li>📢 12-oktabr kuni ota-onalar yig‘ilishi bo‘lib o‘tadi.</li>
+        <li>🎉 “Oltin kuz” bayrami uchun tayyorgarlik 15-oktabrda boshlanadi.</li>
+        <li>🧩 Yangi o‘quv materiali tarqatildi – 2-guruh bolalari uchun.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    new Chart(document.getElementById('ageChart'), {
+      type: 'bar',
+      data: {
+        labels: ['3 yosh', '4 yosh', '5 yosh', '6 yosh'],
+        datasets: [{
+          label: 'Bolalar soni',
+          data: [8, 10, 9, 5],
+          backgroundColor: ['#3b82f6', '#60a5fa', '#93c5fd', '#2563eb'],
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    new Chart(document.getElementById('groupChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Kichik C11', 'O‘rta D52', 'Katta F48', 'Bitiruv N437'],
+        datasets: [{
+          data: [7, 9, 8, 8],
+          backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
+        }]
+      }
+    });
+  </script>
+</div>
+
+
+@code{
+  List<Client> Clients = new List<Client>();
+  List<Group> Groups = new List<Group>();
+
+  int? SearchGroupId = null;
+
+  protected override async Task OnInitializedAsync(){
+    Clients = await DbContext.Clients.ToListAsync();
+    Groups = await DbContext.Groups.ToListAsync();
+  }
+
+  private async Task FilterSearch(){
+    if (SearchGroupId != null){
+      Clients = await DbContext.Clients.Where(c=>c.GroupId == SearchGroupId.Value).ToListAsync();
+    } else {
+      Clients = await DbContext.Clients.ToListAsync();
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@page "/Admin"
+@rendermode InteractiveServer
+@using Bogcha.Data
+@using Bogcha.Models
+@inject BogchaDbContext DbContext
+@using Microsoft.EntityFrameworkCore
+
+<h1>Simple Admin Panel</h1>
+
+<style>
+    h2 { margin-top: 40px; }
+    form { margin-bottom: 20px; }
+    label { display: block; margin-top: 10px; }
+    input, select { width: 200px; padding: 5px; margin-top: 5px; }
+    button { margin-top: 10px; padding: 5px 10px; }
+</style>
+
+<!-- BogchaModel Form -->
+<h2>Create BogchaModel</h2>
+<form>
+    <label>Name:</label>
+    <input @bind="newBogcha.Name" type="text" />
+
+    <label>Description:</label>
+    <input @bind="newBogcha.Description" type="text" />
+
+    <button type="button" @onclick="SaveBogcha">Save</button>
+</form>
+
+<!-- Group Form -->
+<h2>Create Group</h2>
+<form>
+    <label>Name:</label>
+    <input @bind="newGroup.Name" type="text" />
+
+    <label>Bogcha ID:</label>
+    <input @bind="newGroup.BogchaId" type="number" />
+
+    <button type="button" @onclick="SaveGroup">Save</button>
+</form>
+
+<!-- User Form -->
+<h2>Create User</h2>
+<form>
+    <label>First Name:</label>
+    <input @bind="newUser.FirstName" type="text" />
+
+    <label>Last Name:</label>
+    <input @bind="newUser.LastName" type="text" />
+
+    <label>Middle Name:</label>
+    <input @bind="newUser.MiddleName" type="text" />
+
+    <label>Bogcha ID:</label>
+    <input @bind="newUser.BogchaId" type="number" />
+
+    <label>Group ID:</label>
+    <input @bind="newUser.GroupId" type="number" />
+
+    <button type="button" @onclick="SaveUser">Save</button>
+</form>
+
+<!-- Client Form -->
+<h2>Create Client</h2>
+<form>
+    <label>First Name:</label>
+    <input @bind="newClient.FirstName" type="text" />
+
+    <label>Last Name:</label>
+    <input @bind="newClient.LastName" type="text" />
+
+    <label>Middle Name:</label>
+    <input @bind="newClient.MiddleName" type="text" />
+
+    <label>Age:</label>
+    <input @bind="newClient.Age" type="number" min="2" max="7" />
+
+    <label>Bogcha ID:</label>
+    <input @bind="newClient.BogchaId" type="number" />
+
+    <label>Group ID:</label>
+    <input @bind="newClient.GroupId" type="number" />
+
+    <label>Contact Info:</label>
+    <input @bind="newClient.ContactInfo" type="text" />
+
+    <button type="button" @onclick="SaveClient">Save</button>
+</form>
+
+@code {
+    BogchaModel newBogcha = new BogchaModel();
+    Group newGroup = new Group();
+    User newUser = new User();
+    Client newClient = new Client();
+
+    private async Task SaveBogcha()
+    {
+        DbContext.Bogchas.Add(newBogcha);
+        await DbContext.SaveChangesAsync();
+        newBogcha = new BogchaModel(); // reset form
+    }
+
+    private async Task SaveGroup()
+    {
+        DbContext.Groups.Add(newGroup);
+        await DbContext.SaveChangesAsync();
+        newGroup = new Group();
+    }
+
+    private async Task SaveUser()
+    {
+        DbContext.Users.Add(newUser);
+        await DbContext.SaveChangesAsync();
+        newUser = new User();
+    }
+
+    private async Task SaveClient()
+    {
+        DbContext.Clients.Add(newClient);
+        await DbContext.SaveChangesAsync();
+        newClient = new Client();
+    }
+}

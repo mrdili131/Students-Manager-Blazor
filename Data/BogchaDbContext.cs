@@ -11,5 +11,8 @@ namespace Bogcha.Data
         }
 
         public DbSet<Client> Clients {get;set;}
+        public DbSet<User> Users {get;set;}
+        public DbSet<BogchaModel> Bogchas {get;set;}
+        public DbSet<Group> Groups {get;set;}
     }
 }
