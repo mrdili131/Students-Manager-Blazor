@@ -103,14 +103,6 @@ main[b-2f28i4mp16] {
       font-family: "Nunito", sans-serif;
     }
 
-    .body[b-kqxcq393q5] {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      background-color: #f3f4f6;
-      min-height: 100vh;
-    }
 
     /* Sidebar */
     nav[b-kqxcq393q5] {
@@ -187,11 +179,7 @@ main[b-2f28i4mp16] {
 
     /* Responsive */
     @media (max-width: 768px) {
-      .body[b-kqxcq393q5] {
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-      }
+
 
       nav[b-kqxcq393q5] {
         position: fixed;
@@ -559,6 +547,159 @@ main[b-2f28i4mp16] {
       }
 
       .submit-btn[b-hq94l768gs] {
+        width: 100%;
+      }
+    }
+/* _content/Bogcha/Components/Pages/UserPages/Clients.razor.rz.scp.css */
+*[b-k6gbqbi0lk] {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Nunito", sans-serif;
+    }
+
+    /* Main Container */
+    .main-container[b-k6gbqbi0lk] {
+      margin-left: 250px;
+      flex: 1;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+      min-height: 100vh;
+    }
+
+    /* Top Bar */
+    .top-bar[b-k6gbqbi0lk] {
+      width: 100%;
+      padding: 20px;
+      background-color: #f9fafb;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .top-bar h1[b-k6gbqbi0lk] {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    /* Button */
+    .add-client-btn[b-k6gbqbi0lk] {
+      background-color: #3b82f6;
+      color: white;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+      align-self: flex-start;
+    }
+
+    .add-client-btn:hover[b-k6gbqbi0lk] {
+      background-color: #2563eb;
+    }
+
+    .add-client-btn:active[b-k6gbqbi0lk] {
+      transform: scale(0.98);
+    }
+
+    /* Table */
+    .clients-table-holder[b-k6gbqbi0lk] {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      background-color: #ffffff;
+    }
+
+    table[b-k6gbqbi0lk] {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    thead[b-k6gbqbi0lk] {
+      background-color: #f3f4f6;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    th[b-k6gbqbi0lk], td[b-k6gbqbi0lk] {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th[b-k6gbqbi0lk] {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    td[b-k6gbqbi0lk] {
+      font-size: 15px;
+    }
+
+    .edit-btn[b-k6gbqbi0lk],
+    .delete-btn[b-k6gbqbi0lk] {
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.1s, background-color 0.2s;
+    }
+
+    .edit-btn[b-k6gbqbi0lk] {
+      background-color: #fde68a;
+    }
+
+    .delete-btn[b-k6gbqbi0lk] {
+      background-color: #fca5a5;
+    }
+
+    .edit-btn:hover[b-k6gbqbi0lk] {
+      background-color: #fcd34d;
+    }
+
+    .delete-btn:hover[b-k6gbqbi0lk] {
+      background-color: #f87171;
+    }
+
+    .edit-btn:active[b-k6gbqbi0lk],
+    .delete-btn:active[b-k6gbqbi0lk] {
+      transform: scale(0.96);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+
+      .main-container[b-k6gbqbi0lk] {
+        margin-left: 0;
+        margin-top: 70px;
+      }
+
+      .top-bar h1[b-k6gbqbi0lk] {
+        font-size: 18px;
+      }
+
+      table[b-k6gbqbi0lk] {
+        font-size: 14px;
+      }
+
+      th[b-k6gbqbi0lk], td[b-k6gbqbi0lk] {
+        padding: 10px;
+      }
+
+      .add-client-btn[b-k6gbqbi0lk] {
         width: 100%;
       }
     }

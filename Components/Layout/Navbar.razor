@@ -1,9 +1,10 @@
+@inject NavigationManager Navigator
 <nav>
     <h1>BogchaUZ</h1>
-    <li>Bosh sahifa</li>
+    <li @onclick='()=>Navigator.NavigateTo("/")'>Bosh sahifa</li>
     <li>Davomat</li>
     <li>Gruppalar</li>
-    <li>Bolalar</li>
+    <li @onclick='()=>Navigator.NavigateTo("/User/Clients")'>Bolalar</li>
     <li>Ota-onalar</li>
     <li>Sozlamalar</li>
   </nav>

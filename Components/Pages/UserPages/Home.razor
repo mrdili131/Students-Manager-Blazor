@@ -4,6 +4,8 @@
 @using Bogcha.Models
 @inject Bogcha.Data.BogchaDbContext DbContext
 @using Microsoft.EntityFrameworkCore
+@inject IJSRuntime JS
+@inject NavigationManager Navigator
 
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -17,7 +19,7 @@
     <div class="stats">
       <div class="card"><h2>@Clients.Count</h2><span>Jami o‘quvchilar</span></div>
       <div class="card"><h2>28</h2><span>Bugun kelganlar</span></div>
-      <div class="card"><h2>4</h2><span>Guruhlar soni</span></div>
+      <div class="card"><h2>@Groups.Count</h2><span>Guruhlar soni</span></div>
       <div class="card"><h2>87%</h2><span>Davomat foizi</span></div>
     </div>
 
@@ -33,7 +35,6 @@
     </div>
 
     <div class="controls">
-      <input type="text" placeholder="Ism yoki familiya bilan qidirish...">
       <select @bind="SearchGroupId">
       <option value="">Hammasi</option>
       @foreach(var group in Groups){
@@ -41,7 +42,7 @@
       }
       </select>
       <button @onclick="FilterSearch">Filtrlash</button>
-      <button style="background:#10b981;">Yangi o‘quvchi +</button>
+      <button style="background:#10b981;" @onclick='()=>Navigator.NavigateTo("/User/AddClient")'>Yangi o‘quvchi +</button>
     </div>
 
     <div class="table-section">
@@ -71,33 +72,41 @@
   </div>
 
   <script>
-    new Chart(document.getElementById('ageChart'), {
-      type: 'bar',
-      data: {
-        labels: ['3 yosh', '4 yosh', '5 yosh', '6 yosh'],
-        datasets: [{
-          label: 'Bolalar soni',
-          data: [8, 10, 9, 5],
-          backgroundColor: ['#3b82f6', '#60a5fa', '#93c5fd', '#2563eb'],
-          borderRadius: 6,
-        }]
-      },
-      options: {
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true } }
-      }
-    });
+      window.renderCharts = (ageLabels, ageData, groupLabels, groupData) => {
+      // Clear previous charts if needed
+      if(window.ageChartInstance) window.ageChartInstance.destroy();
+      if(window.groupChartInstance) window.groupChartInstance.destroy();
 
-    new Chart(document.getElementById('groupChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Kichik C11', 'O‘rta D52', 'Katta F48', 'Bitiruv N437'],
-        datasets: [{
-          data: [7, 9, 8, 8],
-          backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
-        }]
-      }
-    });
+      const ageCtx = document.getElementById('ageChart').getContext('2d');
+      window.ageChartInstance = new Chart(ageCtx, {
+        type: 'bar',
+        data: {
+          labels: ageLabels,
+          datasets: [{
+            label: 'Bolalar soni',
+            data: ageData,
+            backgroundColor: ['#3b82f6', '#60a5fa', '#93c5fd', '#2563eb'],
+            borderRadius: 6,
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      const groupCtx = document.getElementById('groupChart').getContext('2d');
+      window.groupChartInstance = new Chart(groupCtx, {
+        type: 'pie',
+        data: {
+          labels: groupLabels,
+          datasets: [{
+            data: groupData,
+            backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
+          }]
+        }
+      });
+    }
   </script>
 </div>
 
@@ -107,10 +116,27 @@
   List<Group> Groups = new List<Group>();
 
   int? SearchGroupId = null;
+  Dictionary<int,int> AgeStats = new ();
+  Dictionary<string,int> GroupStats = new();
 
   protected override async Task OnInitializedAsync(){
     Clients = await DbContext.Clients.ToListAsync();
     Groups = await DbContext.Groups.ToListAsync();
+
+    AgeStats = Clients.GroupBy(c=>c.Age).OrderBy(g=>g.Key).ToDictionary(g=>g.Key,g=>g.Count());
+    GroupStats = Clients.Where(c=>c.Group!=null).GroupBy(c=>c.Group.Name).ToDictionary(g=>g.Key,g=>g.Count());
+  }
+
+  protected override async Task OnAfterRenderAsync(bool firstRender){
+    if (firstRender){
+      var ageLabels = AgeStats.Keys.Select(s=>$"{s} yosh").ToArray();
+      var ageData = AgeStats.Values.ToArray();
+
+      var groupLabels = GroupStats.Keys.ToArray();
+      var groupData = GroupStats.Values.ToArray();
+
+      await JS.InvokeVoidAsync("renderCharts",ageLabels,ageData,groupLabels,groupData);
+    }
   }
 
   private async Task FilterSearch(){

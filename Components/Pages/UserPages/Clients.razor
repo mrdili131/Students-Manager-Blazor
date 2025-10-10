@@ -1,0 +1,54 @@
+@page "/User/Clients"
+@rendermode InteractiveServer
+@inject NavigationManager Nagivator
+@inject Bogcha.Data.BogchaDbContext DbContext
+@using Microsoft.EntityFrameworkCore
+@using Bogcha.Models
+
+<div class="main-container">
+    <div class="top-bar">
+      <h1><strong>BlackNigga</strong> bog‘chasi bolalari ro‘yxati</h1>
+    </div>
+
+    <button class="add-client-btn" @onclick='()=>Nagivator.NavigateTo("/User/AddClient")'>+ O‘quvchi qo‘shish</button>
+
+    <div class="clients-table-holder">
+      <table>
+        <thead>
+          <tr>
+            <th>FIO</th>
+            <th>Yoshi</th>
+            <th>Gruppa</th>
+            <th>Harakatlar</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach(var client in ClientsList){
+          <tr>
+            <td>@client.LastName @client.FirstName @client.MiddleName</td>
+            <td>@client.Age</td>
+            <td>@client.GroupId</td>
+            <td>
+              <button class="edit-btn">Tahrirlash</button>
+              <button class="delete-btn" @onclick='()=>DeleteClient(client.Id)'>O‘chirish</button>
+            </td>
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+@code{
+  List<Client> ClientsList = new List<Client>();
+
+  protected override async Task OnInitializedAsync(){
+    ClientsList = await DbContext.Clients.ToListAsync();
+  }
+
+  private async Task DeleteClient(int ClientId){
+    DbContext.Clients.Remove(DbContext.Clients.FirstOrDefault(c=>c.Id==ClientId));
+    await DbContext.SaveChangesAsync();
+    ClientsList = await DbContext.Clients.ToListAsync();
+  }
+}
