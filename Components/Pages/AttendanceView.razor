@@ -9,7 +9,7 @@
 
     <div class="filters">
       <label for="date">Sana:</label>
-      <input type="date" @bind="FilterDate" id="date"/>
+      <input type="date" @bind="FilterDatePlain" id="date"/>
 
       <label for="group">Gruppa:</label>
       <select id="group" @bind="FilterGroupId">
@@ -26,18 +26,18 @@
       <table>
         <thead>
           <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>FIO</th>
             <th>Gruppa</th>
             <th>Holati</th>
           </tr>
         </thead>
         <tbody>
-        @foreach(var client in Clients){
+        @foreach(var attend in Attendances){
           <tr>
-            <td>@client.Id</td>
-            <td>@client.LastName @client.FirstName @client.MiddleName</td>
-            <td>@client.GroupId</td>
+            <td>@attend.Id</td>
+            <td>@attend.Client.LastName @attend.Client.FirstName @attend.Client.MiddleName</td>
+            <td>@attend.Client.GroupId</td>
             <td>
               <button class="status-btn present">Bor</button>
               <button class="status-btn absent">Yo‘q</button>
@@ -52,20 +52,54 @@
 @code{
   List<Client> Clients = new List<Client>();
   List<Group> Groups = new List<Group>();
-  private DateTime? FilterDate = DateTime.Now;
+  List<Attendance> Attendances = new List<Attendance>();
+  Attendance newAttendance = new Attendance();
+  DateTime FilterDatePlain = DateTime.Now;
+  DateOnly FilterDate;
   private int? FilterGroupId;
+  
 
   async Task UpdateData(){
     Clients = await DbContext.Clients.ToListAsync();
     Groups = await DbContext.Groups.ToListAsync();
   }
 
+  async Task CreateDailyAttendance(){
+    foreach(var client in Clients){
+      bool attendanceExists = await DbContext.Attendances.AnyAsync(a=>a.ClientId==client.Id&&a.CreatedAt==FilterDate);
+      if (!attendanceExists){
+          newAttendance.ClientId = client.Id;
+          newAttendance.GroupId = client.Group.Id;
+          newAttendance.IsExist = false;
+          newAttendance.Client = client;
+          newAttendance.Group = client.Group;
+          newAttendance.CreatedAt = FilterDate;
+        DbContext.Attendances.Add(newAttendance);
+        await DbContext.SaveChangesAsync();
+        newAttendance = new Attendance();
+        Console.WriteLine($"No attendance for {client.FirstName}\nWe created it");
+      } else {
+        Console.WriteLine($"{client.FirstName} has attendance");
+      }
+    }
+  }
+
   async Task FilterSearch(){
-    Console.WriteLine(FilterDate);
-    Console.WriteLine(FilterGroupId);
+    if (FilterGroupId != null && FilterDate != null){
+      await CreateDailyAttendance();
+      Attendances = await DbContext.Attendances.Where(c=>c.Group.Id==FilterGroupId&&c.CreatedAt==FilterDate).ToListAsync();
+    } else if (FilterDate != null){
+      await CreateDailyAttendance();
+      Attendances = new ();
+    } else if (FilterGroupId==null){
+      await CreateDailyAttendance();
+      Attendances = new List<Attendance>();
+    }
   }
 
   protected override async Task OnInitializedAsync(){
-    UpdateData();
-  }
+    await UpdateData();
+    FilterDate = DateOnly.FromDateTime(FilterDatePlain);
+    <!-- await DbContext.Database.ExecuteSqlRawAsync("DELETE FROM Attendances"); await DbContext.SaveChangesAsync(); -->
+  } 
 }
