@@ -1,0 +1,71 @@
+@page "/User/AttendanceView"
+@rendermode InteractiveServer
+
+
+<div class="main-container">
+    <div class="top-bar">
+      <h1>Davomatni kuzatish</h1>
+    </div>
+
+    <div class="filters">
+      <label for="date">Sana:</label>
+      <input type="date" @bind="FilterDate" id="date"/>
+
+      <label for="group">Gruppa:</label>
+      <select id="group" @bind="FilterGroupId">
+        <option value="@((int?)null)">Barcha gruppalar</option>
+        @foreach(var group in Groups){
+          <option value="@group.Id">@group.Name</option>
+        }
+      </select>
+
+      <button @onclick="FilterSearch">Ko‘rsatish</button>
+    </div>
+
+    <div class="attendance-table-holder">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>FIO</th>
+            <th>Gruppa</th>
+            <th>Holati</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach(var client in Clients){
+          <tr>
+            <td>@client.Id</td>
+            <td>@client.LastName @client.FirstName @client.MiddleName</td>
+            <td>@client.GroupId</td>
+            <td>
+              <button class="status-btn present">Bor</button>
+              <button class="status-btn absent">Yo‘q</button>
+            </td>
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+@code{
+  List<Client> Clients = new List<Client>();
+  List<Group> Groups = new List<Group>();
+  private DateTime? FilterDate = DateTime.Now;
+  private int? FilterGroupId;
+
+  async Task UpdateData(){
+    Clients = await DbContext.Clients.ToListAsync();
+    Groups = await DbContext.Groups.ToListAsync();
+  }
+
+  async Task FilterSearch(){
+    Console.WriteLine(FilterDate);
+    Console.WriteLine(FilterGroupId);
+  }
+
+  protected override async Task OnInitializedAsync(){
+    UpdateData();
+  }
+}

@@ -162,3 +162,4 @@ C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\refint\Bogcha.dll
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\Bogcha.pdb
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\Bogcha.genruntimeconfig.cache
 C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\ref\Bogcha.dll
+C:\Users\user\source\repos\Bogcha\Bogcha\obj\Debug\net8.0\scopedcss\Components\Pages\AttendanceView.razor.rz.scp.css

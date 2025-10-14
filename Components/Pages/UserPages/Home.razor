@@ -36,7 +36,7 @@
 
     <div class="controls">
       <select @bind="SearchGroupId">
-      <option value="">Hammasi</option>
+      <option value="@((int?)null)">Hammasi</option>
       @foreach(var group in Groups){
         <option value="@group.Id">@group.Name</option>
       }

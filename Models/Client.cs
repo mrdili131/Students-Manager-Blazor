@@ -23,5 +23,7 @@ namespace Bogcha.Models
         public BogchaModel? Bogcha {get;set;}
         public Group? Group {get;set;}
         public User? Parent {get;set;}
+
+        public ICollection<Attendance> Attendances {get;set;} = new List<Attendance>();
     }
 }
