@@ -18,9 +18,9 @@
 
     <div class="stats">
       <div class="card"><h2>@Clients.Count</h2><span>Jami o‘quvchilar</span></div>
-      <div class="card"><h2>28</h2><span>Bugun kelganlar</span></div>
+      <div class="card"><h2>@(Clients.Count-Attendances.Count)</h2><span>Bugun kelganlar</span></div>
       <div class="card"><h2>@Groups.Count</h2><span>Guruhlar soni</span></div>
-      <div class="card"><h2>87%</h2><span>Davomat foizi</span></div>
+      <div class="card"><h2>@(Attendances.Count/Clients.Count*100)%</h2><span>Davomat foizi</span></div>
     </div>
 
     <div class="charts">
@@ -36,7 +36,7 @@
 
     <div class="controls">
       <select @bind="SearchGroupId">
-      <option value="@((int?)null)">Hammasi</option>
+      <option value="">Hammasi</option>
       @foreach(var group in Groups){
         <option value="@group.Id">@group.Name</option>
       }
@@ -54,8 +54,8 @@
           </tr>
         </thead>
         <tbody>
-        @foreach(var client in Clients){
-          <tr><td>@client.LastName @client.FirstName</td><td>@client.Age</td><td>@client.Group.Name</td><td style="color:green;">Keldi</td><td>@client.ContactInfo</td></tr>
+        @foreach(var attend in Attendances){
+          <tr><td>@attend.Client.LastName @attend.Client.FirstName</td><td>@attend.Client.Age</td><td>@attend.Client.Group.Name</td><td style='color:@(attend.IsExist ? "green" : "red");'>@(attend.IsExist ? "Keldi" : "Kelmadi")</td><td>@attend.Client.ContactInfo</td></tr>
         }
         </tbody>
       </table>
@@ -114,6 +114,7 @@
 @code{
   List<Client> Clients = new List<Client>();
   List<Group> Groups = new List<Group>();
+  List<Attendance> Attendances = new List<Attendance>();
 
   int? SearchGroupId = null;
   Dictionary<int,int> AgeStats = new ();
@@ -122,9 +123,11 @@
   protected override async Task OnInitializedAsync(){
     Clients = await DbContext.Clients.ToListAsync();
     Groups = await DbContext.Groups.ToListAsync();
+    Attendances = await DbContext.Attendances.ToListAsync();
 
     AgeStats = Clients.GroupBy(c=>c.Age).OrderBy(g=>g.Key).ToDictionary(g=>g.Key,g=>g.Count());
     GroupStats = Clients.Where(c=>c.Group!=null).GroupBy(c=>c.Group.Name).ToDictionary(g=>g.Key,g=>g.Count());
+    
   }
 
   protected override async Task OnAfterRenderAsync(bool firstRender){
@@ -142,8 +145,10 @@
   private async Task FilterSearch(){
     if (SearchGroupId != null){
       Clients = await DbContext.Clients.Where(c=>c.GroupId == SearchGroupId.Value).ToListAsync();
+      Attendances = await DbContext.Attendances.Where(c=>c.Client.GroupId==SearchGroupId.Value).ToListAsync();
     } else {
       Clients = await DbContext.Clients.ToListAsync();
+      Attendances = await DbContext.Attendances.ToListAsync();
     }
   }
 }

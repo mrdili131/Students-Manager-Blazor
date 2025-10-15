@@ -11,14 +11,44 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bogcha.Migrations
 {
     [DbContext(typeof(BogchaDbContext))]
-    [Migration("20251009110324_newest23")]
-    partial class newest23
+    [Migration("20251015103604_InitialCreate3")]
+    partial class InitialCreate3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
+
+            modelBuilder.Entity("Bogcha.Models.Attendance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("GroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsExist")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("Attendances");
+                });
 
             modelBuilder.Entity("Bogcha.Models.BogchaModel", b =>
                 {
@@ -158,6 +188,22 @@ namespace Bogcha.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Bogcha.Models.Attendance", b =>
+                {
+                    b.HasOne("Bogcha.Models.Client", "Client")
+                        .WithMany("Attendances")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Bogcha.Models.Group", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Group");
+                });
+
             modelBuilder.Entity("Bogcha.Models.Client", b =>
                 {
                     b.HasOne("Bogcha.Models.BogchaModel", "Bogcha")
@@ -201,6 +247,11 @@ namespace Bogcha.Migrations
                     b.Navigation("Bogcha");
 
                     b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("Bogcha.Models.Client", b =>
+                {
+                    b.Navigation("Attendances");
                 });
 #pragma warning restore 612, 618
         }

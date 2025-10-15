@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bogcha")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39640963540ca4b889d499c039f5741e185efaeb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef787d1950ffc4a75a70610c87befea1b4e3ba12")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bogcha")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bogcha")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

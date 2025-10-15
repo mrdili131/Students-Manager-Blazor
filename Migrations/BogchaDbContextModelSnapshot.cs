@@ -26,7 +26,7 @@ namespace Bogcha.Migrations
                     b.Property<int?>("ClientId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateOnly>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("GroupId")
@@ -189,7 +189,8 @@ namespace Bogcha.Migrations
                 {
                     b.HasOne("Bogcha.Models.Client", "Client")
                         .WithMany("Attendances")
-                        .HasForeignKey("ClientId");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Bogcha.Models.Group", "Group")
                         .WithMany()

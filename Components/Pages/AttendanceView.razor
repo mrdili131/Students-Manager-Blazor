@@ -13,7 +13,7 @@
 
       <label for="group">Gruppa:</label>
       <select id="group" @bind="FilterGroupId">
-        <option value="@((int?)null)">Barcha gruppalar</option>
+        <option value="">Barcha gruppalar</option>
         @foreach(var group in Groups){
           <option value="@group.Id">@group.Name</option>
         }
@@ -29,18 +29,26 @@
             <th>ID</th>
             <th>FIO</th>
             <th>Gruppa</th>
+            <th>O‘zgartirish</th>
             <th>Holati</th>
           </tr>
         </thead>
         <tbody>
         @foreach(var attend in Attendances){
           <tr>
-            <td>@attend.Id</td>
+            <td>@attend.Client.Id</td>
             <td>@attend.Client.LastName @attend.Client.FirstName @attend.Client.MiddleName</td>
-            <td>@attend.Client.GroupId</td>
+            <td>@attend.Client.Group.Name</td>
             <td>
+              <button class="status-btn present" @onclick="()=>ChangeAttendance(attend.Id,true)">Bor</button>
+              <button class="status-btn absent" @onclick="()=>ChangeAttendance(attend.Id,false)">Yo‘q</button>
+            </td>
+            <td>
+            @if(attend.IsExist){
               <button class="status-btn present">Bor</button>
+            } else {
               <button class="status-btn absent">Yo‘q</button>
+            }
             </td>
           </tr>
         }
@@ -56,7 +64,11 @@
   Attendance newAttendance = new Attendance();
   DateTime FilterDatePlain = DateTime.Now;
   DateOnly FilterDate;
-  private int? FilterGroupId;
+  DateTime Today = DateTime.Today;
+  DateOnly TodayDateOnly;
+
+
+  private int? FilterGroupId = null;
   
 
   async Task UpdateData(){
@@ -64,10 +76,12 @@
     Groups = await DbContext.Groups.ToListAsync();
   }
 
+
   async Task CreateDailyAttendance(){
     foreach(var client in Clients){
       bool attendanceExists = await DbContext.Attendances.AnyAsync(a=>a.ClientId==client.Id&&a.CreatedAt==FilterDate);
-      if (!attendanceExists){
+      var client_join_time = DateOnly.FromDateTime(client.CreatedAt);
+      if (!attendanceExists && client_join_time<=FilterDate && FilterDate <= TodayDateOnly){
           newAttendance.ClientId = client.Id;
           newAttendance.GroupId = client.Group.Id;
           newAttendance.IsExist = false;
@@ -79,27 +93,39 @@
         newAttendance = new Attendance();
         Console.WriteLine($"No attendance for {client.FirstName}\nWe created it");
       } else {
-        Console.WriteLine($"{client.FirstName} has attendance");
+        Console.WriteLine($"{client.FirstName} has attendance at {FilterDate}");
       }
     }
   }
 
   async Task FilterSearch(){
+    FilterDate = DateOnly.FromDateTime(FilterDatePlain);
     if (FilterGroupId != null && FilterDate != null){
       await CreateDailyAttendance();
       Attendances = await DbContext.Attendances.Where(c=>c.Group.Id==FilterGroupId&&c.CreatedAt==FilterDate).ToListAsync();
     } else if (FilterDate != null){
       await CreateDailyAttendance();
-      Attendances = new ();
+      Attendances = await DbContext.Attendances.ToListAsync();
     } else if (FilterGroupId==null){
       await CreateDailyAttendance();
-      Attendances = new List<Attendance>();
+      Attendances = await DbContext.Attendances.Where(c=>c.CreatedAt==FilterDate).ToListAsync();
+    }
+  }
+
+  async Task ChangeAttendance(int AttendanceId, bool status){
+    var changeable = await DbContext.Attendances.FirstOrDefaultAsync(c=>c.Id==AttendanceId);
+    if (changeable!=null){
+      changeable.IsExist = status;
+      await DbContext.SaveChangesAsync(); 
+      FilterSearch();
     }
   }
 
   protected override async Task OnInitializedAsync(){
     await UpdateData();
+    await FilterSearch();
     FilterDate = DateOnly.FromDateTime(FilterDatePlain);
+    TodayDateOnly = DateOnly.FromDateTime(Today);
     <!-- await DbContext.Database.ExecuteSqlRawAsync("DELETE FROM Attendances"); await DbContext.SaveChangesAsync(); -->
   } 
 }

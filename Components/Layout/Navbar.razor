@@ -1,10 +1,31 @@
 @inject NavigationManager Navigator
-<nav>
-    <h1>BogchaUZ</h1>
-    <li @onclick='()=>Navigator.NavigateTo("/")'>Bosh sahifa</li>
-    <li>Davomat</li>
-    <li>Gruppalar</li>
-    <li @onclick='()=>Navigator.NavigateTo("/User/Clients")'>Bolalar</li>
-    <li>Ota-onalar</li>
-    <li>Sozlamalar</li>
-  </nav>
+@rendermode InteractiveServer
+
+<!-- Navbar with Top Button (for mobile) -->
+<nav class="@(_isMenuOpen ? "open" : "")">
+    <div class="nav-header">
+        <h1>BogchaUZ</h1>
+        <button class="nav-toggle" @onclick="ToggleMenu" aria-label="Toggle menu">☰</button>
+    </div>
+
+    <!-- Navbar Links that are hidden by default on mobile -->
+    <div class="nav-links">
+        <a href="/">Bosh sahifa</a>
+        <a href="User/AttendanceView">Davomat</a>
+        <a href="#">Gruppalar</a>
+        <a href="User/Clients">Bolalar</a>
+        <a href="#">Ota-onalar</a>
+        <a href="#">Sozlamalar</a>
+    </div>
+</nav>
+
+@code {
+    // State to track whether the menu is open or closed
+    private bool _isMenuOpen = false;
+
+    // Toggle the menu visibility
+    private async Task ToggleMenu()
+    {
+        _isMenuOpen = !_isMenuOpen;
+    }
+}

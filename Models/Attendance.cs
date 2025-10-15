@@ -16,7 +16,7 @@ namespace Bogcha.Models
             CreatedAt = DateOnly.FromDateTime(DateTime.Now);
         }
 
-        public Client Client{get;set;}
-        public Group Group{get;set;}
+        public Client? Client{get;set;}
+        public Group? Group{get;set;}
     }
 }

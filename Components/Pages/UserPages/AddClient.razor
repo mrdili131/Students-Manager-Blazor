@@ -86,9 +86,11 @@
             && newClient.ParentId != null
         )
         {
+            newClient.Group = await DbContext.Groups.FirstOrDefaultAsync(c=>c.Id==newClient.GroupId);
+            newClient.Parent = await DbContext.Users.FirstOrDefaultAsync(c=>c.Id==newClient.ParentId);
             DbContext.Clients.Add(newClient);
-            newClient = new Client();
             await DbContext.SaveChangesAsync();
+            newClient = new Client();
         }
     }
 }

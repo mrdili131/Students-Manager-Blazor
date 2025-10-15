@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bogcha.Migrations
 {
     [DbContext(typeof(BogchaDbContext))]
-    [Migration("20251014063933_InitialCreate131")]
-    partial class InitialCreate131
+    [Migration("20251015061128_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,10 +29,13 @@ namespace Bogcha.Migrations
                     b.Property<int?>("ClientId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateOnly>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("GroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsExist")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("UpdatedAt")
