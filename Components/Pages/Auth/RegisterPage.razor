@@ -1,0 +1,53 @@
+@page "/Auth/Register"
+@rendermode InteractiveServer
+@using Services
+@using Bogcha.Models
+@inject Bogcha.Data.BogchaDbContext DbContext
+@inject Services.AuthService AuthService
+@inject NavigationManager Navigator
+
+
+<h1>Login</h1>
+<input type="text" @bind="email" placeholder="Email">
+<input type="text" @bind="Username" placeholder="Username">
+<input type="text" @bind="LastName" placeholder="Last name">
+<input type="text" @bind="FirstName" placeholder="First name">
+<input type="text" @bind="MiddleName" placeholder="Middle name">
+<select @bind="BogchaId">
+    <option value="0">Tanlang</option>
+    @foreach(var bogcha in Bogchas){
+        <option value="@bogcha.Id">@bogcha.Name</option>
+    }
+</select>
+<input type="password" @bind="Password" placeholder="Password">
+
+<button @onclick="Register">Register</button>
+<a href="/Auth/Login">Already have an account ?</a>
+
+@code{
+    private string? email;
+    private string? Username;
+    private string? LastName;
+    private string? FirstName;
+    private string? MiddleName;
+    private string? Password;
+    private int BogchaId = 0;
+
+    List<BogchaModel> Bogchas = new List<BogchaModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Bogchas = await DbContext.Bogchas.ToListAsync();
+    }
+
+    public async Task Register(){
+        if (
+            Username != null && email != null && Password != null && LastName != null && FirstName != null && LastName != null && MiddleName != null && BogchaId > -1
+        ){
+            bool res = await AuthService.RegisterAsync(email,Username,Password,FirstName,LastName,MiddleName,BogchaId);
+            if (res){
+                Navigator.NavigateTo("/");
+            }
+        } else  {Console.WriteLine("Cannot validate new User instance");}
+    }
+}

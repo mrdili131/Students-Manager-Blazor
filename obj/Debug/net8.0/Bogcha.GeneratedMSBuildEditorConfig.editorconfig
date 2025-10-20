@@ -17,61 +17,69 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Bogcha
 build_property.RootNamespace = Bogcha
-build_property.ProjectDir = C:\Users\user\source\repos\Bogcha\Bogcha\
+build_property.ProjectDir = /Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\user\source\repos\Bogcha\Bogcha
+build_property.MSBuildProjectDirectory = /Users/dilmuhammad/Desktop/Students-Manager-Blazor-main
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/App.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/Error.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/Auth/LoginPage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BdXRoL0xvZ2luUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/Admin.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcQWRtaW4ucmF6b3I=
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/Auth/RegisterPage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BdXRoL1JlZ2lzdGVyUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Routes.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/_Imports.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/UserPages/Admin.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Vc2VyUGFnZXMvQWRtaW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Layout/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-2f28i4mp16
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Layout/Navbar.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2YmFyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-kqxcq393q5
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/AttendanceView.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBdHRlbmRhbmNlVmlldy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-ka22u59tuw
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-kaot5tw10s
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/AddClient.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcQWRkQ2xpZW50LnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-y3rfsuwpan
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Layout/Navbar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2YmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-qld2zc8hma
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/AddGroup.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcQWRkR3JvdXAucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-hq94l768gs
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/AttendanceView.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BdHRlbmRhbmNlVmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-3fxbjyfg29
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/Clients.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcQ2xpZW50cy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-k6gbqbi0lk
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/UserPages/AddClient.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Vc2VyUGFnZXMvQWRkQ2xpZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-icqg0borbh
 
-[C:/Users/user/source/repos/Bogcha/Bogcha/Components/Pages/UserPages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVc2VyUGFnZXNcSG9tZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-an2dspduul
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/UserPages/AddGroup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Vc2VyUGFnZXMvQWRkR3JvdXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-1505yzrdfp
+
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/UserPages/Clients.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Vc2VyUGFnZXMvQ2xpZW50cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-u2orb26jm4
+
+[/Users/dilmuhammad/Desktop/Students-Manager-Blazor-main/Components/Pages/UserPages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Vc2VyUGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-nv6uuoct7o

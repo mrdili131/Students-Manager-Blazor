@@ -1,0 +1,37 @@
+@page "/Auth/Login"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using Services
+@using Bogcha.Models
+@inject Bogcha.Data.BogchaDbContext DbContext
+@inject Services.AuthService AuthService
+@inject NavigationManager Navigator
+
+<h1>Login</h1>
+<input type="text" @bind="username" placeholder="Username">
+<input type="password" @bind="Password" placeholder="Password">
+
+<button @onclick="Login">Login</button>
+
+@code{
+    private string? username;
+    private string? Password;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    public async Task Login(){
+        if (Password != null && username != null){
+            bool res = await AuthService.LoginAsync(username,Password);
+            if (res){
+                Navigator.NavigateTo("/",true);
+            } else {
+                Console.WriteLine("Cannot log in !");
+            }
+        }
+    }
+
+}
